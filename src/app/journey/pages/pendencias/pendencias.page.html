@@ -1,0 +1,72 @@
+<ion-header [translucent]="true" class="journey-header">
+  <ion-toolbar>
+    <ion-title>Pendencias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="journey-content ion-padding">
+  <p class="section-label">Trocar crianca</p>
+  <app-child-selector></app-child-selector>
+
+  <section class="section-block">
+    <h2>Em atraso</h2>
+
+    @if (overdueVaccines().length === 0) {
+      <div class="empty">Nenhuma vacina em atraso.</div>
+    } @else {
+      <ion-list lines="none" class="vaccine-list late-list">
+        @for (vaccine of overdueVaccines(); track vaccine.id + vaccine.scheduledDate) {
+          <ion-item button detail="false" (click)="open(vaccine)">
+            <ion-label>
+              <h3>{{ vaccine.name }}</h3>
+              <p>{{ vaccine.doseLabel }} - vencida em {{ data.formatDateBr(vaccine.scheduledDate) }}</p>
+            </ion-label>
+            <app-status-badge slot="end" dose="OVERDUE"></app-status-badge>
+          </ion-item>
+        }
+      </ion-list>
+    }
+  </section>
+
+  <section class="section-block">
+    <h2>Pendentes</h2>
+
+    @if (pendingVaccines().length === 0) {
+      <div class="empty">Nenhuma vacina pendente no momento.</div>
+    } @else {
+      <ion-list lines="none" class="vaccine-list warn-list">
+        @for (vaccine of pendingVaccines(); track vaccine.id + vaccine.scheduledDate) {
+          <ion-item button detail="false" (click)="open(vaccine)">
+            <ion-label>
+              <h3>{{ vaccine.name }}</h3>
+              <p>{{ vaccine.doseLabel }} - prevista para {{ data.formatDateBr(vaccine.scheduledDate) }}</p>
+            </ion-label>
+            <app-status-badge slot="end" dose="PENDING"></app-status-badge>
+          </ion-item>
+        }
+      </ion-list>
+    }
+  </section>
+
+  <ion-modal [isOpen]="opened() !== null" (didDismiss)="close()">
+    <ng-template>
+      @if (opened(); as selectedVaccine) {
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Detalhe da pendencia</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <h3>{{ selectedVaccine.name }}</h3>
+          <p>{{ selectedVaccine.doseLabel }}</p>
+          <p><strong>Status:</strong> <app-status-badge [dose]="data.getDoseStatus(selectedVaccine)"></app-status-badge></p>
+          <p><strong>Data prevista:</strong> {{ data.formatDateBr(selectedVaccine.scheduledDate) }}</p>
+          @if (selectedVaccine.location) {
+            <p><strong>Local:</strong> {{ selectedVaccine.location }}</p>
+          }
+          <ion-button expand="block" (click)="close()">Fechar</ion-button>
+        </ion-content>
+      }
+    </ng-template>
+  </ion-modal>
+</ion-content>

@@ -1,0 +1,75 @@
+:host {
+  --app-green: #abc270;
+  --app-yellow: #fec868;
+  --app-orange: #fda769;
+  --app-brown: #473c33;
+}
+
+.journey-header ion-toolbar {
+  --background: var(--app-brown);
+  --color: #fff7e8;
+}
+
+.journey-content {
+  --padding-bottom: calc(96px + env(safe-area-inset-bottom));
+  --background:
+    radial-gradient(circle at 8% 4%, color-mix(in srgb, var(--app-yellow) 42%, white) 0%, transparent 36%),
+    linear-gradient(180deg, #fff9ef 0%, #ffffff 62%);
+}
+
+.section-label {
+  margin: 0 0 0.45rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--app-brown) 78%, white);
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.top-row {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.top-row h2 {
+  margin: 0;
+  color: var(--app-brown);
+  font-size: 1.08rem;
+}
+
+.empty {
+  margin-top: 0.8rem;
+  border-radius: 14px;
+  padding: 1rem;
+  text-align: center;
+  color: color-mix(in srgb, var(--app-brown) 78%, white);
+  background: #ffffff;
+  border: 1px solid color-mix(in srgb, var(--app-green) 35%, white);
+}
+
+.history-list {
+  margin-top: 0.7rem;
+  background: transparent;
+}
+
+.history-list ion-item {
+  --background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--app-green) 30%, white) 0%, transparent 48%),
+    #ffffff;
+  border: 1px solid color-mix(in srgb, var(--app-green) 30%, white);
+  border-radius: 16px;
+  margin-bottom: 0.55rem;
+  box-shadow: 0 10px 24px rgba(71, 60, 51, 0.08);
+}
+
+.history-list h3 {
+  color: var(--app-brown);
+  font-weight: 700;
+}
+
+.history-list p {
+  color: color-mix(in srgb, var(--app-brown) 75%, white);
+}

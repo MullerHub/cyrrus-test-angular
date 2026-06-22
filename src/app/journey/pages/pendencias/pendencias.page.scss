@@ -1,0 +1,81 @@
+:host {
+  --app-green: #abc270;
+  --app-yellow: #fec868;
+  --app-orange: #fda769;
+  --app-brown: #473c33;
+}
+
+.journey-header ion-toolbar {
+  --background: var(--app-brown);
+  --color: #fff7e8;
+}
+
+.journey-content {
+  --padding-bottom: calc(96px + env(safe-area-inset-bottom));
+  --background:
+    radial-gradient(circle at 10% 2%, color-mix(in srgb, var(--app-orange) 28%, white) 0%, transparent 34%),
+    linear-gradient(180deg, #fff9ef 0%, #ffffff 62%);
+}
+
+.section-label {
+  margin: 0 0 0.45rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--app-brown) 78%, white);
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.section-block {
+  margin-top: 1.1rem;
+}
+
+.section-block h2 {
+  margin: 0;
+  color: var(--app-brown);
+  font-size: 1.02rem;
+}
+
+.empty {
+  margin-top: 0.6rem;
+  border-radius: 12px;
+  padding: 0.9rem;
+  text-align: center;
+  color: color-mix(in srgb, var(--app-brown) 75%, white);
+  border: 1px solid color-mix(in srgb, var(--app-green) 34%, white);
+  background: #ffffff;
+}
+
+.vaccine-list {
+  margin-top: 0.55rem;
+  background: transparent;
+}
+
+.vaccine-list ion-item {
+  border-radius: 16px;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 10px 24px rgba(71, 60, 51, 0.08);
+}
+
+.late-list ion-item {
+  --background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--app-orange) 34%, white) 0%, transparent 45%),
+    color-mix(in srgb, var(--app-orange) 12%, white);
+  border: 1px solid color-mix(in srgb, var(--app-orange) 42%, white);
+}
+
+.warn-list ion-item {
+  --background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--app-yellow) 36%, white) 0%, transparent 45%),
+    color-mix(in srgb, var(--app-yellow) 12%, white);
+  border: 1px solid color-mix(in srgb, var(--app-yellow) 42%, white);
+}
+
+.vaccine-list h3 {
+  color: var(--app-brown);
+  font-weight: 700;
+}
+
+.vaccine-list p {
+  color: color-mix(in srgb, var(--app-brown) 75%, white);
+}

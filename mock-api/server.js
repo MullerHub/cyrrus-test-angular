@@ -214,6 +214,34 @@ app.get('/children/:childId', (req, res) => {
   return res.json(childWithSituation(child));
 });
 
+app.put('/children/:childId', (req, res) => {
+  const child = children.find((item) => item.id === req.params.childId);
+
+  if (!child) {
+    return res.status(404).json({ message: 'Crianca nao encontrada.' });
+  }
+
+  const { name, birthDate, gender } = req.body;
+
+  if (!name || typeof name !== 'string' || name.trim().length < 2) {
+    return res.status(400).json({ message: 'Nome invalido.' });
+  }
+
+  if (!birthDate || Number.isNaN(normalizeDateOnly(birthDate).getTime())) {
+    return res.status(400).json({ message: 'Data de nascimento invalida.' });
+  }
+
+  if (!['M', 'F'].includes(gender)) {
+    return res.status(400).json({ message: 'Genero invalido.' });
+  }
+
+  child.name = name.trim();
+  child.birthDate = birthDate;
+  child.gender = gender;
+
+  return res.json(childWithSituation(child));
+});
+
 app.get('/children/:childId/vaccination-history', (req, res) => {
   const child = children.find((item) => item.id === req.params.childId);
 

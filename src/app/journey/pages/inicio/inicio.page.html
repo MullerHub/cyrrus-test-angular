@@ -1,0 +1,158 @@
+<ion-header [translucent]="true" class="journey-header">
+  <ion-toolbar>
+    <ion-title>Ola, familia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="journey-content">
+  @if (data.loading()) {
+    <div class="state-wrap ion-padding">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Carregando dados da mock API...</p>
+    </div>
+  } @else if (data.errorMessage()) {
+    <div class="state-wrap ion-padding">
+      <p>{{ data.errorMessage() }}</p>
+      <ion-button (click)="data.reload()">Tentar novamente</ion-button>
+    </div>
+  } @else {
+  <section class="hero ion-padding">
+    <p class="eyebrow">Painel familiar</p>
+    <h1>Acompanhamento de vacinacao das criancas</h1>
+    <p>Toque nos cards para navegar e editar dados.</p>
+  </section>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6" sizeMd="3">
+        <ion-card class="kpi-card ok" [button]="true" (click)="openKpi('historico')">
+          <ion-card-content>
+            <h3>{{ kpis().families }}</h3>
+            <p>Familias</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6" sizeMd="3">
+        <ion-card class="kpi-card ok" [button]="true" (click)="openKpi('historico')">
+          <ion-card-content>
+            <h3>{{ kpis().children }}</h3>
+            <p>Criancas</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6" sizeMd="3">
+        <ion-card class="kpi-card late" [button]="true" (click)="openKpi('pendencias')">
+          <ion-card-content>
+            <h3>{{ kpis().overdue }}</h3>
+            <p>Doses em atraso</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6" sizeMd="3">
+        <ion-card class="kpi-card warn" [button]="true" (click)="openKpi('campanhas')">
+          <ion-card-content>
+            <h3>{{ kpis().activeCampaigns }}</h3>
+            <p>Campanhas ativas</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-card class="main-card">
+          <ion-card-header>
+            <ion-card-title>Acompanhamento por familia</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            @for (family of families(); track family.id) {
+              <article class="family-block">
+                <header class="family-header">
+                  <div>
+                    <h3>{{ family.familyName }}</h3>
+                    <p>{{ family.responsibleName }} - {{ family.city }}</p>
+                  </div>
+                  <ion-badge>{{ family.children.length }} filhos</ion-badge>
+                </header>
+
+                <div class="children-grid">
+                  @for (child of family.children; track child.id) {
+                    <article class="child-card">
+                      <header>
+                        <h4>{{ child.name }}</h4>
+                        <app-status-badge [situation]="situationOf(child)"></app-status-badge>
+                      </header>
+                      <p>{{ data.formatAge(child.ageMonths) }}</p>
+                      <div class="child-actions">
+                        <ion-button size="small" fill="solid" (click)="openChildHistory(child)">
+                          Ver historico
+                        </ion-button>
+                        <ion-button size="small" fill="outline" (click)="openEditChild(child)">
+                          Editar crianca
+                        </ion-button>
+                      </div>
+                      @if (summaryOf(child); as summary) {
+                        <p>
+                          <strong>{{ summary.applied }}</strong> aplicadas |
+                          <strong>{{ summary.pending }}</strong> pendentes |
+                          <strong>{{ summary.overdue }}</strong> atrasadas
+                        </p>
+                      }
+                    </article>
+                  }
+                </div>
+              </article>
+            }
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-modal [isOpen]="editingChild() !== null" (didDismiss)="closeEditChild()">
+    <ng-template>
+      @if (editingChild(); as child) {
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Editar crianca</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <ion-item>
+            <ion-label position="stacked">Nome</ion-label>
+            <ion-input
+              [ngModel]="formName()"
+              (ngModelChange)="formName.set($event)"
+              placeholder="Nome completo"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Data de nascimento</ion-label>
+            <ion-input
+              type="date"
+              [ngModel]="formBirthDate()"
+              (ngModelChange)="formBirthDate.set($event)"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Genero</ion-label>
+            <ion-select [ngModel]="formGender()" (ngModelChange)="formGender.set($event)">
+              <ion-select-option value="F">Feminino</ion-select-option>
+              <ion-select-option value="M">Masculino</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <div class="modal-actions">
+            <ion-button fill="outline" (click)="closeEditChild()">Cancelar</ion-button>
+            <ion-button [disabled]="!canSave() || data.isSavingChild(child.id)" (click)="saveChild()">
+              Salvar
+            </ion-button>
+          </div>
+        </ion-content>
+      }
+    </ng-template>
+  </ion-modal>
+  }
+</ion-content>

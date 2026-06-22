@@ -70,3 +70,21 @@ export interface DashboardResponse {
   totals: DashboardTotals;
   childrenBySituation: DashboardChildrenBySituation;
 }
+
+export interface VaccinationHistoryItem {
+  id: string;
+  childId: string;
+  vaccineDoseId: string;
+  scheduledDate: string;
+  appliedDate: string | null;
+  status: VaccinationSituation;
+  batchNumber: string | null;
+  healthUnit: string | null;
+  preVaccinationMapId: string | null;
+  campaignId: string | null;
+  vaccineName: string | null;
+  vaccineId: string | null;
+  doseNumber: number | null;
+  preVaccinationRecommendation: 'CLEAR' | 'ATTENTION' | 'BLOCKED' | null;
+  campaignTitle: string | null;
+}

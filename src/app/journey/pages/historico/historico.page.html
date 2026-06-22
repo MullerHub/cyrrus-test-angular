@@ -1,0 +1,58 @@
+<ion-header [translucent]="true" class="journey-header">
+  <ion-toolbar>
+    <ion-title>Historico</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="journey-content ion-padding">
+  <p class="section-label">Trocar crianca</p>
+  <app-child-selector></app-child-selector>
+
+  <section class="top-row">
+    <h2>{{ appliedVaccines().length }} vacinas aplicadas</h2>
+    <app-status-badge toneInput="ok" customLabel="Carteira"></app-status-badge>
+  </section>
+
+  @if (appliedVaccines().length === 0) {
+    <div class="empty">Nenhuma dose aplicada registrada.</div>
+  } @else {
+    <ion-list lines="none" class="history-list">
+      @for (vaccine of appliedVaccines(); track vaccine.id + vaccine.appliedDate) {
+        <ion-item button detail="false" (click)="open(vaccine)">
+          <ion-label>
+            <h3>{{ vaccine.name }}</h3>
+            <p>{{ vaccine.doseLabel }}</p>
+            <p>
+              Aplicada em {{ data.formatDateBr(vaccine.appliedDate) }}
+              @if (vaccine.location) {
+                - {{ vaccine.location }}
+              }
+            </p>
+          </ion-label>
+        </ion-item>
+      }
+    </ion-list>
+  }
+
+  <ion-modal [isOpen]="opened() !== null" (didDismiss)="close()">
+    <ng-template>
+      @if (opened(); as selectedVaccine) {
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Detalhe da vacina</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <h3>{{ selectedVaccine.name }}</h3>
+          <p>{{ selectedVaccine.doseLabel }}</p>
+          <p><strong>Status:</strong> <app-status-badge [dose]="data.getDoseStatus(selectedVaccine)"></app-status-badge></p>
+          <p><strong>Data:</strong> {{ data.formatDateBr(selectedVaccine.appliedDate || selectedVaccine.scheduledDate) }}</p>
+          @if (selectedVaccine.location) {
+            <p><strong>Local:</strong> {{ selectedVaccine.location }}</p>
+          }
+          <ion-button expand="block" (click)="close()">Fechar</ion-button>
+        </ion-content>
+      }
+    </ng-template>
+  </ion-modal>
+</ion-content>

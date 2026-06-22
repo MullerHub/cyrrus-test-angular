@@ -1,0 +1,25 @@
+<ion-tabs>
+  <ion-router-outlet [animated]="false"></ion-router-outlet>
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="inicio" href="/inicio">
+      <ion-icon name="home-outline"></ion-icon>
+      <ion-label>Inicio</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="historico" href="/historico">
+      <ion-icon name="medkit-outline"></ion-icon>
+      <ion-label>Historico</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="pendencias" href="/pendencias">
+      <ion-icon name="alert-circle-outline"></ion-icon>
+      <ion-label>Pendencias</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="campanhas" href="/campanhas">
+      <ion-icon name="megaphone-outline"></ion-icon>
+      <ion-label>Campanhas</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

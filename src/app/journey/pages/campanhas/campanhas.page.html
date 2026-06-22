@@ -1,0 +1,65 @@
+<ion-header [translucent]="true" class="journey-header">
+  <ion-toolbar>
+    <ion-title>Campanhas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="journey-content ion-padding">
+  <p class="section-label">Filtrando por crianca</p>
+  <app-child-selector></app-child-selector>
+
+  <section class="section-block">
+    <h2>Aplicaveis a {{ selected().name.split(' ')[0] }} ({{ data.formatAge(selected().ageMonths) }})</h2>
+
+    @if (campaigns().length === 0) {
+      <div class="empty">Nenhuma campanha ativa no momento.</div>
+    } @else {
+      <ion-list lines="none" class="campaign-list">
+        @for (campaign of campaigns(); track campaign.id) {
+          <ion-item button detail="false" (click)="open(campaign)">
+            <ion-label>
+              <h3>{{ campaign.title }}</h3>
+              <p>{{ campaign.description }}</p>
+              <p>
+                Publico: {{ data.formatAge(campaign.targetMinAgeMonths) }} a
+                {{ data.formatAge(campaign.targetMaxAgeMonths) }}
+              </p>
+            </ion-label>
+            <ion-badge [class.urgent]="data.getRemainingDays(campaign) <= 7">
+              {{ data.getRemainingDays(campaign) }} dias
+            </ion-badge>
+          </ion-item>
+        }
+      </ion-list>
+    }
+  </section>
+
+  <ion-modal [isOpen]="opened() !== null" (didDismiss)="close()">
+    <ng-template>
+      @if (opened(); as selectedCampaign) {
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Detalhe da campanha</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <h3>{{ selectedCampaign.title }}</h3>
+          <p>{{ selectedCampaign.description }}</p>
+          <p>
+            <strong>Periodo:</strong>
+            {{ data.formatDateBr(selectedCampaign.startDate) }} a
+            {{ data.formatDateBr(selectedCampaign.endDate) }}
+          </p>
+          <p>
+            <strong>Publico:</strong>
+            {{ data.formatAge(selectedCampaign.targetMinAgeMonths) }} a
+            {{ data.formatAge(selectedCampaign.targetMaxAgeMonths) }}
+          </p>
+          <p><strong>Local:</strong> {{ selectedCampaign.location }}</p>
+          <p><strong>Dias restantes:</strong> {{ data.getRemainingDays(selectedCampaign) }}</p>
+          <ion-button expand="block" (click)="close()">Fechar</ion-button>
+        </ion-content>
+      }
+    </ng-template>
+  </ion-modal>
+</ion-content>
