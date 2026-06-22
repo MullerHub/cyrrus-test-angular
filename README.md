@@ -11,42 +11,31 @@ Entregar uma solucao digital simples e intuitiva para:
 - exibicao de campanhas ativas;
 - acompanhamento individual por crianca em familias com mais de um filho.
 
-## Estado Atual
+## Estado Atual da Entrega
 
-Este repositorio esta em construcao incremental, com entregas tecnicas por partes.
-A base inicial inclui:
-- projeto Ionic com Angular;
-- roteamento inicial;
-- documentacao tecnica de modelagem de dados e arquitetura.
+Este repositorio foi estruturado em etapas, com foco em regras de negocio, base de dados e contrato de API antes da construcao completa das telas.
 
-## Documentacao Tecnica
+## 1) Regras de Negocio (concluidas)
 
+As principais regras de negocio do desafio foram mapeadas e documentadas:
+- Status vacinal por dose: `APPLIED`, `PENDING`, `OVERDUE`.
+- Identificacao de pendencias por prazo vencido.
+- Separacao de historico por crianca para familias com mais de um filho.
+- Campanhas de vacinacao ativas com filtro por publico infantil.
+- Triagem pre-vacinal com recomendacao `CLEAR`, `ATTENTION` e `BLOCKED`.
+
+Base de referencia:
 - [Modelagem de Dados (3FN) e Decisao SQL vs NoSQL](docs/01-modelagem-dados-3fn.md)
 - [Esquema SQL de Referencia](docs/sql/schema.sql)
 
-## Stack
+## 2) Diagrama Visual (concluido)
 
-- Ionic Framework 8
-- Angular 20
-- TypeScript
+Diagrama de visao geral com fluxo de uso e entidades do dominio:
+- [Diagrama Visual do Modelo de Negocio](docs/00-diagrama-visao-geral.md)
 
-## Como executar
+## 3) Backend Mocado (concluido)
 
-```bash
-npm install
-npm start
-```
-
-## Estrategia de Entrega
-
-1. Fundacao de dados e regras de negocio.
-2. Estrutura de telas e navegacao.
-3. Indicadores visuais e responsividade.
-4. Refinamento de UX, testes e polish final.
-
-## Mock Backend (dados estaticos)
-
-API mock local para servir familias e criancas durante o desenvolvimento do frontend.
+Foi implementada uma mock API em Node.js + Express para suportar o frontend com dados estaticos, seguindo a logica de negocio definida nos docs.
 
 ### Subir API mock
 
@@ -78,9 +67,41 @@ Servidor padrao: http://localhost:3333
 - GET /campaigns/active
 - GET /campaigns/active?childId=child-003
 
-## Cenarios cobertos no mock
+### Cenarios cobertos no mock
 
 - Cenario 1: cada crianca retorna resumo com aplicadas, pendentes e atrasadas.
 - Cenario 2: status `OVERDUE` e itens vencidos em `/children/:childId/vaccination-situation`.
 - Cenario 3: campanhas ativas com filtro por publico alvo em `/campaigns/active`.
 - Cenario 4: familias com mais de um filho e situacoes vacinais distintas em `/families`.
+
+## 4) Frontend (iniciando agora)
+
+O frontend entra na fase de implementacao de telas com Ionic + Angular, seguindo boas praticas e arquitetura limpa:
+- separacao por camadas (core, domain, feature, shared);
+- componentes reutilizaveis;
+- services orientados a contrato de API;
+- interfaces tipadas para o dominio vacinal;
+- foco em responsividade (mobile, tablet e desktop).
+
+## Direcao de Design (paleta obrigatoria)
+
+As cores principais da aplicacao sao:
+- `#ABC270`
+- `#FEC868`
+- `#FDA769`
+- `#473C33`
+
+Essas cores serao aplicadas na identidade visual das telas, indicadores e elementos de destaque.
+
+## Stack
+
+- Ionic Framework 8
+- Angular 20
+- TypeScript
+
+## Como executar
+
+```bash
+npm install
+npm start
+```

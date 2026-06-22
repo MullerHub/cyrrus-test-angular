@@ -1,20 +1,134 @@
-<ion-header [translucent]="true">
+<ion-header class="app-header" [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Vacina Infantil</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="home-content">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <section class="hero-section ion-padding">
+    <p class="eyebrow">Acompanhamento vacinal familiar</p>
+    <h1>Criancas, historico, campanhas e situacao vacinal em um unico painel</h1>
+    <p class="subtitle">
+      Interface inicial conectada na mock API para acelerar a evolucao das proximas telas.
+    </p>
+  </section>
+
+  @if (loading()) {
+    <div class="loading-state ion-padding">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Carregando dados do backend mocado...</p>
+    </div>
+  } @else if (errorMessage()) {
+    <div class="error-state ion-padding">
+      <p>{{ errorMessage() }}</p>
+    </div>
+  } @else {
+    <ion-grid fixed>
+      @if (dashboard(); as dashboardData) {
+        <ion-row>
+          <ion-col size="12" sizeMd="6" sizeLg="3">
+            <ion-card class="kpi-card">
+              <ion-card-content>
+                <p class="kpi-label">Familias</p>
+                <p class="kpi-value">{{ dashboardData.totals.families }}</p>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col size="12" sizeMd="6" sizeLg="3">
+            <ion-card class="kpi-card">
+              <ion-card-content>
+                <p class="kpi-label">Criancas</p>
+                <p class="kpi-value">{{ dashboardData.totals.children }}</p>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col size="12" sizeMd="6" sizeLg="3">
+            <ion-card class="kpi-card">
+              <ion-card-content>
+                <p class="kpi-label">Doses em atraso</p>
+                <p class="kpi-value overdue">{{ dashboardData.totals.overdue }}</p>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col size="12" sizeMd="6" sizeLg="3">
+            <ion-card class="kpi-card">
+              <ion-card-content>
+                <p class="kpi-label">Campanhas ativas</p>
+                <p class="kpi-value">{{ dashboardData.totals.activeCampaigns }}</p>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      }
+
+      <ion-row>
+        <ion-col size="12" sizeLg="8">
+          <ion-card class="main-card">
+            <ion-card-header>
+              <ion-card-title>Acompanhamento por familia</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              @for (family of families(); track familyTrackBy($index, family)) {
+                <article class="family-block">
+                  <header class="family-header">
+                    <div>
+                      <h3>{{ family.familyName }}</h3>
+                      <p>Responsavel: {{ family.responsibleName }} | {{ family.city }}</p>
+                    </div>
+                    <ion-badge>{{ family.childrenCount }} filhos</ion-badge>
+                  </header>
+
+                  <div class="children-grid">
+                    @for (child of family.children; track childTrackBy($index, child)) {
+                      <article class="child-card">
+                        <header>
+                          <h4>{{ child.name }}</h4>
+                          <ion-chip [class]="badgeClassBySituation(child.vaccinationSituation)">
+                            <ion-label>{{ formatSituation(child.vaccinationSituation) }}</ion-label>
+                          </ion-chip>
+                        </header>
+                        <p>{{ child.ageMonths }} meses</p>
+                        <p>
+                          <strong>Aplicadas:</strong> {{ child.statusSummary.APPLIED }}
+                          <strong>Pendentes:</strong> {{ child.statusSummary.PENDING }}
+                          <strong>Atrasadas:</strong> {{ child.statusSummary.OVERDUE }}
+                        </p>
+                      </article>
+                    }
+                  </div>
+                </article>
+              }
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="12" sizeLg="4">
+          <ion-card class="main-card">
+            <ion-card-header>
+              <ion-card-title>Campanhas ativas</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              @for (campaign of campaigns(); track campaignTrackBy($index, campaign)) {
+                <article class="campaign-card">
+                  <h4>{{ campaign.title }}</h4>
+                  <p>{{ campaign.description }}</p>
+                  <p>
+                    <strong>Publico:</strong>
+                    {{ campaign.targetMinAgeMonths }} a {{ campaign.targetMaxAgeMonths }} meses
+                  </p>
+                  <ion-badge>{{ campaign.remainingDays }} dias restantes</ion-badge>
+                </article>
+              } @empty {
+                <p>Nenhuma campanha ativa no momento.</p>
+              }
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  }
 </ion-content>
