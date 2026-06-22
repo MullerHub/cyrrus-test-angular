@@ -27,24 +27,23 @@ As principais regras de negocio do desafio foram mapeadas e documentadas:
 Base de referencia:
 - [Modelagem de Dados (3FN) e Decisao SQL vs NoSQL](docs/01-modelagem-dados-3fn.md)
 - [Esquema SQL de Referencia](docs/sql/schema.sql)
+- [Documentacao Tecnica Detalhada](docs/03-documentacao-tecnica-detalhada.md)
 
 ## 2) Diagrama Visual (concluido)
 
 Diagrama de visao geral com fluxo de uso e entidades do dominio:
 - [Diagrama Visual do Modelo de Negocio](docs/00-diagrama-visao-geral.md)
 
-## 3) Backend Mocado (concluido)
+## 3) Mock de dados estatico no Frontend (concluido)
 
-Foi implementada uma mock API em Node.js + Express para suportar o frontend com dados estaticos, seguindo a logica de negocio definida nos docs.
+Os mocks agora sao servidos internamente pelo frontend (sem dependencia de API Node/Express), para garantir deploy estatico em provedores como Vercel.
 
-### Subir API mock
+Fonte dos dados estaticos:
 
-```bash
-npm install
-npm run mock:api
-```
+- `src/app/core/mocks/static-data.ts`
+- `src/app/core/services/mock-api.service.ts`
 
-Servidor padrao: http://localhost:3333
+Com isso, a aplicacao funciona apenas com build estatico e nao precisa subir `npm run mock:api` para producao.
 
 ### Endpoints principais
 
@@ -105,3 +104,11 @@ Essas cores serao aplicadas na identidade visual das telas, indicadores e elemen
 npm install
 npm start
 ```
+
+## Build para deploy estatico
+
+```bash
+npm run build
+```
+
+O resultado final fica na pasta `www/`.

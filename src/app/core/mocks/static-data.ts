@@ -1,0 +1,708 @@
+export const STATIC_DATA = {
+  "families": [
+    {
+      "id": "fam-001",
+      "familyName": "Familia Souza",
+      "responsibleName": "Ana Souza",
+      "email": "ana.souza@email.com",
+      "phone": "(11) 98888-1111",
+      "city": "Sao Paulo",
+      "createdAt": "2025-11-05T09:00:00Z"
+    },
+    {
+      "id": "fam-002",
+      "familyName": "Familia Lima",
+      "responsibleName": "Carlos Lima",
+      "email": "carlos.lima@email.com",
+      "phone": "(21) 97777-2222",
+      "city": "Rio de Janeiro",
+      "createdAt": "2025-12-20T12:30:00Z"
+    },
+    {
+      "id": "fam-003",
+      "familyName": "Familia Nascimento",
+      "responsibleName": "Bianca Nascimento",
+      "email": "bianca.nascimento@email.com",
+      "phone": "(31) 96666-3333",
+      "city": "Belo Horizonte",
+      "createdAt": "2026-01-08T08:45:00Z"
+    },
+    {
+      "id": "fam-004",
+      "familyName": "Familia Duarte",
+      "responsibleName": "Pedro Duarte",
+      "email": "pedro.duarte@email.com",
+      "phone": "(41) 95555-4444",
+      "city": "Curitiba",
+      "createdAt": "2026-02-11T17:20:00Z"
+    }
+  ],
+  "children": [
+    {
+      "id": "child-001",
+      "familyId": "fam-001",
+      "name": "Livia Souza",
+      "birthDate": "2022-03-15",
+      "gender": "F"
+    },
+    {
+      "id": "child-002",
+      "familyId": "fam-001",
+      "name": "Rafael Souza",
+      "birthDate": "2020-09-02",
+      "gender": "M"
+    },
+    {
+      "id": "child-003",
+      "familyId": "fam-002",
+      "name": "Isabela Lima",
+      "birthDate": "2021-12-08",
+      "gender": "F"
+    },
+    {
+      "id": "child-004",
+      "familyId": "fam-002",
+      "name": "Lucas Lima",
+      "birthDate": "2024-08-10",
+      "gender": "M"
+    },
+    {
+      "id": "child-005",
+      "familyId": "fam-003",
+      "name": "Marina Nascimento",
+      "birthDate": "2023-06-25",
+      "gender": "F"
+    },
+    {
+      "id": "child-006",
+      "familyId": "fam-003",
+      "name": "Gabriel Nascimento",
+      "birthDate": "2020-11-30",
+      "gender": "M"
+    },
+    {
+      "id": "child-007",
+      "familyId": "fam-004",
+      "name": "Helena Duarte",
+      "birthDate": "2022-05-12",
+      "gender": "F"
+    },
+    {
+      "id": "child-008",
+      "familyId": "fam-004",
+      "name": "Theo Duarte",
+      "birthDate": "2025-04-01",
+      "gender": "M"
+    }
+  ],
+  "vaccines": [
+    {
+      "id": "vac-001",
+      "name": "Pentavalente",
+      "disease": "Difteria, tetano, coqueluche, hepatite B e Haemophilus b",
+      "notes": "Vacina de rotina na primeira infancia.",
+      "active": true
+    },
+    {
+      "id": "vac-002",
+      "name": "Triplice Viral",
+      "disease": "Sarampo, caxumba e rubeola",
+      "notes": "Reforco importante no calendario infantil.",
+      "active": true
+    },
+    {
+      "id": "vac-003",
+      "name": "Febre Amarela",
+      "disease": "Febre amarela",
+      "notes": "Aplicacao conforme orientacao local e faixa etaria.",
+      "active": true
+    },
+    {
+      "id": "vac-004",
+      "name": "Influenza",
+      "disease": "Gripe (influenza)",
+      "notes": "Aplicada em campanhas anuais.",
+      "active": true
+    },
+    {
+      "id": "vac-005",
+      "name": "Meningococica ACWY",
+      "disease": "Doenca meningococica dos sorogrupos A, C, W e Y",
+      "notes": "Indicada para reforco em publico infantil e adolescente.",
+      "active": true
+    },
+    {
+      "id": "vac-006",
+      "name": "Hepatite A",
+      "disease": "Hepatite A",
+      "notes": "Dose unica em faixa etaria recomendada.",
+      "active": true
+    }
+  ],
+  "vaccineDoses": [
+    {
+      "id": "dose-001",
+      "vaccineId": "vac-001",
+      "doseNumber": 1,
+      "minAgeMonths": 2,
+      "recommendedUntilMonths": 4,
+      "minIntervalDays": 60
+    },
+    {
+      "id": "dose-002",
+      "vaccineId": "vac-001",
+      "doseNumber": 2,
+      "minAgeMonths": 4,
+      "recommendedUntilMonths": 6,
+      "minIntervalDays": 60
+    },
+    {
+      "id": "dose-003",
+      "vaccineId": "vac-002",
+      "doseNumber": 1,
+      "minAgeMonths": 12,
+      "recommendedUntilMonths": 15,
+      "minIntervalDays": 0
+    },
+    {
+      "id": "dose-004",
+      "vaccineId": "vac-003",
+      "doseNumber": 1,
+      "minAgeMonths": 9,
+      "recommendedUntilMonths": 60,
+      "minIntervalDays": 0
+    },
+    {
+      "id": "dose-005",
+      "vaccineId": "vac-004",
+      "doseNumber": 1,
+      "minAgeMonths": 6,
+      "recommendedUntilMonths": 120,
+      "minIntervalDays": 365
+    },
+    {
+      "id": "dose-006",
+      "vaccineId": "vac-005",
+      "doseNumber": 1,
+      "minAgeMonths": 12,
+      "recommendedUntilMonths": 72,
+      "minIntervalDays": 0
+    },
+    {
+      "id": "dose-007",
+      "vaccineId": "vac-006",
+      "doseNumber": 1,
+      "minAgeMonths": 15,
+      "recommendedUntilMonths": 60,
+      "minIntervalDays": 0
+    }
+  ],
+  "vaccineApplications": [
+    {
+      "id": "app-001",
+      "childId": "child-001",
+      "vaccineDoseId": "dose-001",
+      "scheduledDate": "2022-05-20",
+      "appliedDate": "2022-05-21",
+      "batchNumber": "PENTA-22-001",
+      "healthUnit": "UBS Jardim das Flores",
+      "preVaccinationMapId": "pvm-001",
+      "campaignId": null
+    },
+    {
+      "id": "app-002",
+      "childId": "child-001",
+      "vaccineDoseId": "dose-002",
+      "scheduledDate": "2022-07-20",
+      "appliedDate": null,
+      "batchNumber": null,
+      "healthUnit": null,
+      "preVaccinationMapId": "pvm-002",
+      "campaignId": null
+    },
+    {
+      "id": "app-003",
+      "childId": "child-002",
+      "vaccineDoseId": "dose-003",
+      "scheduledDate": "2022-10-10",
+      "appliedDate": null,
+      "batchNumber": null,
+      "healthUnit": null,
+      "preVaccinationMapId": "pvm-003",
+      "campaignId": null
+    },
+    {
+      "id": "app-004",
+      "childId": "child-003",
+      "vaccineDoseId": "dose-004",
+      "scheduledDate": "2023-01-15",
+      "appliedDate": "2023-01-20",
+      "batchNumber": "FA-23-777",
+      "healthUnit": "Clinica da Familia Centro",
+      "preVaccinationMapId": "pvm-004",
+      "campaignId": null
+    },
+    {
+      "id": "app-005",
+      "childId": "child-003",
+      "vaccineDoseId": "dose-005",
+      "scheduledDate": "2026-06-15",
+      "appliedDate": null,
+      "batchNumber": null,
+      "healthUnit": null,
+      "preVaccinationMapId": "pvm-005",
+      "campaignId": "camp-001"
+    },
+    {
+      "id": "app-006",
+      "childId": "child-004",
+      "vaccineDoseId": "dose-005",
+      "scheduledDate": "2026-11-10",
+      "appliedDate": null,
+      "batchNumber": null,
+      "healthUnit": null,
+      "preVaccinationMapId": null,
+      "campaignId": "camp-001"
+    },
+    {
+      "id": "app-007",
+      "childId": "child-004",
+      "vaccineDoseId": "dose-001",
+      "scheduledDate": "2024-10-12",
+      "appliedDate": "2024-10-13",
+      "batchNumber": "PENTA-24-105",
+      "healthUnit": "UPA Norte",
+      "preVaccinationMapId": "pvm-006",
+      "campaignId": null
+    },
+    {
+      "id": "app-008",
+      "childId": "child-005",
+      "vaccineDoseId": "dose-001",
+      "scheduledDate": "2023-08-30",
+      "appliedDate": "2023-09-01",
+      "batchNumber": "PENTA-23-410",
+      "healthUnit": "UBS Pampulha",
+      "preVaccinationMapId": "pvm-007",
+      "campaignId": null
+    },
+    {
+      "id": "app-009",
+      "childId": "child-005",
+      "vaccineDoseId": "dose-003",
+      "scheduledDate": "2024-07-10",
+      "appliedDate": "2024-07-12",
+      "batchNumber": "TV-24-030",
+      "healthUnit": "UBS Pampulha",
+      "preVaccinationMapId": "pvm-008",
+      "campaignId": null
+    },
+    {
+      "id": "app-010",
+      "childId": "child-005",
+      "vaccineDoseId": "dose-007",
+      "scheduledDate": "2025-01-05",
+      "appliedDate": "2025-01-05",
+      "batchNumber": "HA-25-004",
+      "healthUnit": "UBS Pampulha",
+      "preVaccinationMapId": "pvm-009",
+      "campaignId": null
+    },
+    {
+      "id": "app-011",
+      "childId": "child-006",
+      "vaccineDoseId": "dose-003",
+      "scheduledDate": "2022-01-22",
+      "appliedDate": null,
+      "batchNumber": null,
+      "healthUnit": null,
+      "preVaccinationMapId": "pvm-010",
+      "campaignId": null
+    },
+    {
+      "id": "app-012",
+      "childId": "child-006",
+      "vaccineDoseId": "dose-006",
+      "scheduledDate": "2022-03-15",
+      "appliedDate": null,
+      "batchNumber": null,
+      "healthUnit": null,
+      "preVaccinationMapId": "pvm-011",
+      "campaignId": null
+    },
+    {
+      "id": "app-013",
+      "childId": "child-006",
+      "vaccineDoseId": "dose-004",
+      "scheduledDate": "2021-09-01",
+      "appliedDate": "2021-09-03",
+      "batchNumber": "FA-21-188",
+      "healthUnit": "UBS Central BH",
+      "preVaccinationMapId": "pvm-012",
+      "campaignId": null
+    },
+    {
+      "id": "app-014",
+      "childId": "child-007",
+      "vaccineDoseId": "dose-005",
+      "scheduledDate": "2026-07-01",
+      "appliedDate": null,
+      "batchNumber": null,
+      "healthUnit": null,
+      "preVaccinationMapId": "pvm-013",
+      "campaignId": "camp-001"
+    },
+    {
+      "id": "app-015",
+      "childId": "child-007",
+      "vaccineDoseId": "dose-003",
+      "scheduledDate": "2023-06-20",
+      "appliedDate": "2023-06-21",
+      "batchNumber": "TV-23-707",
+      "healthUnit": "Posto Boa Vista",
+      "preVaccinationMapId": "pvm-014",
+      "campaignId": null
+    },
+    {
+      "id": "app-016",
+      "childId": "child-007",
+      "vaccineDoseId": "dose-006",
+      "scheduledDate": "2023-08-22",
+      "appliedDate": "2023-08-23",
+      "batchNumber": "MEN-23-102",
+      "healthUnit": "Posto Boa Vista",
+      "preVaccinationMapId": "pvm-015",
+      "campaignId": null
+    },
+    {
+      "id": "app-017",
+      "childId": "child-008",
+      "vaccineDoseId": "dose-001",
+      "scheduledDate": "2025-06-10",
+      "appliedDate": "2025-06-10",
+      "batchNumber": "PENTA-25-901",
+      "healthUnit": "Posto Batel",
+      "preVaccinationMapId": "pvm-016",
+      "campaignId": null
+    },
+    {
+      "id": "app-018",
+      "childId": "child-008",
+      "vaccineDoseId": "dose-005",
+      "scheduledDate": "2026-10-10",
+      "appliedDate": null,
+      "batchNumber": null,
+      "healthUnit": null,
+      "preVaccinationMapId": "pvm-017",
+      "campaignId": "camp-001"
+    }
+  ],
+  "vaccinationCampaigns": [
+    {
+      "id": "camp-001",
+      "title": "Campanha Nacional de Influenza Infantil",
+      "description": "Criancas de 6 meses a 10 anos com foco em prevencao de complicacoes respiratorias.",
+      "startDate": "2026-05-01",
+      "endDate": "2026-08-31",
+      "targetMinAgeMonths": 6,
+      "targetMaxAgeMonths": 120
+    },
+    {
+      "id": "camp-003",
+      "title": "Semana da Multivacinacao Infantil",
+      "description": "Atualizacao de doses de rotina e reforcos para criancas ate 14 anos.",
+      "startDate": "2026-06-10",
+      "endDate": "2026-07-30",
+      "targetMinAgeMonths": 0,
+      "targetMaxAgeMonths": 168
+    },
+    {
+      "id": "camp-004",
+      "title": "Acao Especial Triplice Viral",
+      "description": "Busca ativa para completar esquema contra sarampo, caxumba e rubeola.",
+      "startDate": "2026-06-01",
+      "endDate": "2026-07-05",
+      "targetMinAgeMonths": 12,
+      "targetMaxAgeMonths": 72
+    },
+    {
+      "id": "camp-002",
+      "title": "Mutirao Regional de Atualizacao da Caderneta",
+      "description": "Atualizacao de esquemas em atraso para menores de 7 anos.",
+      "startDate": "2025-09-01",
+      "endDate": "2025-10-01",
+      "targetMinAgeMonths": 0,
+      "targetMaxAgeMonths": 84
+    }
+  ],
+  "campaignVaccines": [
+    {
+      "campaignId": "camp-001",
+      "vaccineId": "vac-004"
+    },
+    {
+      "campaignId": "camp-003",
+      "vaccineId": "vac-001"
+    },
+    {
+      "campaignId": "camp-003",
+      "vaccineId": "vac-005"
+    },
+    {
+      "campaignId": "camp-003",
+      "vaccineId": "vac-006"
+    },
+    {
+      "campaignId": "camp-004",
+      "vaccineId": "vac-002"
+    },
+    {
+      "campaignId": "camp-002",
+      "vaccineId": "vac-001"
+    },
+    {
+      "campaignId": "camp-002",
+      "vaccineId": "vac-002"
+    }
+  ],
+  "preVaccinationMaps": [
+    {
+      "id": "pvm-001",
+      "childId": "child-001",
+      "vaccineDoseId": "dose-001",
+      "filledAt": "2022-05-19T14:20:00Z",
+      "hadFever": false,
+      "hasFluSymptoms": false,
+      "hasAllergyHistory": false,
+      "isUsingMedication": false,
+      "hadRecentHospitalization": false,
+      "observations": "Sem contraindicacoes aparentes.",
+      "recommendation": "CLEAR",
+      "recommendedBy": "Enf. Joana P."
+    },
+    {
+      "id": "pvm-002",
+      "childId": "child-001",
+      "vaccineDoseId": "dose-002",
+      "filledAt": "2022-07-19T10:00:00Z",
+      "hadFever": true,
+      "hasFluSymptoms": true,
+      "hasAllergyHistory": false,
+      "isUsingMedication": true,
+      "hadRecentHospitalization": false,
+      "observations": "Sintomas gripais no dia da triagem. Reavaliar antes de aplicar.",
+      "recommendation": "ATTENTION",
+      "recommendedBy": "Dra. Patricia N."
+    },
+    {
+      "id": "pvm-003",
+      "childId": "child-002",
+      "vaccineDoseId": "dose-003",
+      "filledAt": "2022-10-10T08:30:00Z",
+      "hadFever": false,
+      "hasFluSymptoms": false,
+      "hasAllergyHistory": true,
+      "isUsingMedication": false,
+      "hadRecentHospitalization": false,
+      "observations": "Historico alergico leve, sem bloqueio para rotina.",
+      "recommendation": "CLEAR",
+      "recommendedBy": "Enf. Luiz M."
+    },
+    {
+      "id": "pvm-004",
+      "childId": "child-003",
+      "vaccineDoseId": "dose-004",
+      "filledAt": "2023-01-14T16:00:00Z",
+      "hadFever": false,
+      "hasFluSymptoms": false,
+      "hasAllergyHistory": false,
+      "isUsingMedication": false,
+      "hadRecentHospitalization": false,
+      "observations": "Fluxo normal de aplicacao.",
+      "recommendation": "CLEAR",
+      "recommendedBy": "Enf. Clara S."
+    },
+    {
+      "id": "pvm-005",
+      "childId": "child-003",
+      "vaccineDoseId": "dose-005",
+      "filledAt": "2026-06-14T11:10:00Z",
+      "hadFever": false,
+      "hasFluSymptoms": false,
+      "hasAllergyHistory": false,
+      "isUsingMedication": false,
+      "hadRecentHospitalization": false,
+      "observations": "Elegivel para campanha de influenza.",
+      "recommendation": "CLEAR",
+      "recommendedBy": "Enf. Luiza T."
+    },
+    {
+      "id": "pvm-006",
+      "childId": "child-004",
+      "vaccineDoseId": "dose-001",
+      "filledAt": "2024-10-12T08:10:00Z",
+      "hadFever": false,
+      "hasFluSymptoms": false,
+      "hasAllergyHistory": false,
+      "isUsingMedication": false,
+      "hadRecentHospitalization": false,
+      "observations": "Aplicacao sem intercorrencias.",
+      "recommendation": "CLEAR",
+      "recommendedBy": "Enf. Dani R."
+    },
+    {
+      "id": "pvm-007",
+      "childId": "child-005",
+      "vaccineDoseId": "dose-001",
+      "filledAt": "2023-08-30T09:30:00Z",
+      "hadFever": false,
+      "hasFluSymptoms": false,
+      "hasAllergyHistory": false,
+      "isUsingMedication": false,
+      "hadRecentHospitalization": false,
+      "observations": "Fluxo padrao liberado.",
+      "recommendation": "CLEAR",
+      "recommendedBy": "Enf. Luana M."
+    },
+    {
+      "id": "pvm-008",
+      "childId": "child-005",
+      "vaccineDoseId": "dose-003",
+      "filledAt": "2024-07-09T10:00:00Z",
+      "hadFever": false,
+      "hasFluSymptoms": false,
+      "hasAllergyHistory": true,
+      "isUsingMedication": false,
+      "hadRecentHospitalization": false,
+      "observations": "Alergia alimentar leve sem contraindicao para dose.",
+      "recommendation": "ATTENTION",
+      "recommendedBy": "Dra. Camila F."
+    },
+    {
+      "id": "pvm-009",
+      "childId": "child-005",
+      "vaccineDoseId": "dose-007",
+      "filledAt": "2025-01-04T16:15:00Z",
+      "hadFever": false,
+      "hasFluSymptoms": false,
+      "hasAllergyHistory": false,
+      "isUsingMedication": false,
+      "hadRecentHospitalization": false,
+      "observations": "Dose unica liberada.",
+      "recommendation": "CLEAR",
+      "recommendedBy": "Enf. Luana M."
+    },
+    {
+      "id": "pvm-010",
+      "childId": "child-006",
+      "vaccineDoseId": "dose-003",
+      "filledAt": "2022-01-21T11:00:00Z",
+      "hadFever": true,
+      "hasFluSymptoms": true,
+      "hasAllergyHistory": false,
+      "isUsingMedication": true,
+      "hadRecentHospitalization": false,
+      "observations": "Retornar apos melhora clinica; nao compareceu em novo agendamento.",
+      "recommendation": "BLOCKED",
+      "recommendedBy": "Dra. Mirela A."
+    },
+    {
+      "id": "pvm-011",
+      "childId": "child-006",
+      "vaccineDoseId": "dose-006",
+      "filledAt": "2022-03-14T14:00:00Z",
+      "hadFever": false,
+      "hasFluSymptoms": false,
+      "hasAllergyHistory": true,
+      "isUsingMedication": false,
+      "hadRecentHospitalization": true,
+      "observations": "Necessita nova avaliacao medica antes da aplicacao.",
+      "recommendation": "ATTENTION",
+      "recommendedBy": "Dra. Mirela A."
+    },
+    {
+      "id": "pvm-012",
+      "childId": "child-006",
+      "vaccineDoseId": "dose-004",
+      "filledAt": "2021-08-31T10:20:00Z",
+      "hadFever": false,
+      "hasFluSymptoms": false,
+      "hasAllergyHistory": false,
+      "isUsingMedication": false,
+      "hadRecentHospitalization": false,
+      "observations": "Aplicacao realizada em unidade central.",
+      "recommendation": "CLEAR",
+      "recommendedBy": "Enf. Vitor L."
+    },
+    {
+      "id": "pvm-013",
+      "childId": "child-007",
+      "vaccineDoseId": "dose-005",
+      "filledAt": "2026-06-20T08:00:00Z",
+      "hadFever": false,
+      "hasFluSymptoms": false,
+      "hasAllergyHistory": false,
+      "isUsingMedication": false,
+      "hadRecentHospitalization": false,
+      "observations": "Elegivel para campanha de influenza.",
+      "recommendation": "CLEAR",
+      "recommendedBy": "Enf. Bruna C."
+    },
+    {
+      "id": "pvm-014",
+      "childId": "child-007",
+      "vaccineDoseId": "dose-003",
+      "filledAt": "2023-06-19T13:00:00Z",
+      "hadFever": false,
+      "hasFluSymptoms": false,
+      "hasAllergyHistory": false,
+      "isUsingMedication": false,
+      "hadRecentHospitalization": false,
+      "observations": "Aplicacao rotineira sem restricoes.",
+      "recommendation": "CLEAR",
+      "recommendedBy": "Enf. Bruna C."
+    },
+    {
+      "id": "pvm-015",
+      "childId": "child-007",
+      "vaccineDoseId": "dose-006",
+      "filledAt": "2023-08-21T09:15:00Z",
+      "hadFever": false,
+      "hasFluSymptoms": false,
+      "hasAllergyHistory": false,
+      "isUsingMedication": false,
+      "hadRecentHospitalization": false,
+      "observations": "Aplicacao registrada em campanha local.",
+      "recommendation": "CLEAR",
+      "recommendedBy": "Enf. Bruna C."
+    },
+    {
+      "id": "pvm-016",
+      "childId": "child-008",
+      "vaccineDoseId": "dose-001",
+      "filledAt": "2025-06-10T08:20:00Z",
+      "hadFever": false,
+      "hasFluSymptoms": false,
+      "hasAllergyHistory": false,
+      "isUsingMedication": false,
+      "hadRecentHospitalization": false,
+      "observations": "Primeira dose aplicada no calendario regular.",
+      "recommendation": "CLEAR",
+      "recommendedBy": "Enf. Rosa T."
+    },
+    {
+      "id": "pvm-017",
+      "childId": "child-008",
+      "vaccineDoseId": "dose-005",
+      "filledAt": "2026-06-21T15:40:00Z",
+      "hadFever": false,
+      "hasFluSymptoms": false,
+      "hasAllergyHistory": false,
+      "isUsingMedication": false,
+      "hadRecentHospitalization": false,
+      "observations": "Agendamento confirmado para campanha de influenza.",
+      "recommendation": "CLEAR",
+      "recommendedBy": "Enf. Rosa T."
+    }
+  ]
+} as const;
