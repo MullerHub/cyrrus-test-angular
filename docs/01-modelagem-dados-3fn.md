@@ -38,14 +38,14 @@ NoSQL (ex.: Firestore) pode ser usado como camada de leitura/sincronizacao mobil
 
 ```mermaid
 flowchart LR
-  R[RESPONSIBLE\nResponsavel]
-  C[CHILD\nCrianca]
-  V[VACCINE\nVacina]
-  D[VACCINE_DOSE\nDose]
-  P[PRE_VACCINATION_MAP\nMapa pre-vacinal]
-  A[CHILD_VACCINE_APPLICATION\nAplicacao/Agendamento]
-  M[VACCINATION_CAMPAIGN\nCampanha]
-  X[CAMPAIGN_VACCINE\nAssociacao campanha-vacina]
+  R["RESPONSIBLE<br/>Responsavel"]
+  C["CHILD<br/>Crianca"]
+  V["VACCINE<br/>Vacina"]
+  D["VACCINE_DOSE<br/>Dose"]
+  P["PRE_VACCINATION_MAP<br/>Mapa pre-vacinal"]
+  A["CHILD_VACCINE_APPLICATION<br/>Aplicacao/Agendamento"]
+  M["VACCINATION_CAMPAIGN<br/>Campanha"]
+  X["CAMPAIGN_VACCINE<br/>Associacao campanha-vacina"]
 
   R -->|1:N| C
   C -->|1:N| P
